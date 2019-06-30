@@ -6,9 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./server.js",
-    "build": "webpack -p",
-    "serve": "node_modules/.bin/http-server ./dist",
-    "heroku-postbuild": "npm run build"
+    "build": "webpack",
+    "serve": "node_modules/.bin/http-server ./dist"
   },
   "author": "Ori Amir",
   "license": "ISC",
