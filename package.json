@@ -5,10 +5,10 @@
   "main": "dist/index_bundle.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./src/index.js",
-    "build": "webpack --config webpack.config.js",
+    "start": "node ./server.js",
+    "build": "webpack -p",
     "serve": "node_modules/.bin/http-server ./dist",
-    "heroku-postbuild": "webpack -p --config ./webpack.config.js --progress"
+    "heroku-postbuild": "npm run build"
   },
   "author": "Ori Amir",
   "license": "ISC",
@@ -39,6 +39,7 @@
     "bootstrap": "^4.3.1",
     "css-loader": "^2.1.1",
     "eslint-plugin-react-hooks": "^1.6.0",
+    "express": "^4.17.1",
     "node-sass": "^4.11.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
