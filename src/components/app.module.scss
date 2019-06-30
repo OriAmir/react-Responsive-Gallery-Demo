@@ -1,0 +1,107 @@
+.widthNumLabel {
+  color:blue;
+  font-size:25px;
+}
+
+.widthTextLabel {
+  color:grey;
+  font-size:25px;
+}
+
+@media only screen and (max-width: 600px) {
+  .widthNumLabel{
+    font-size: 18px;
+  }
+
+  .widthTextLabel{
+    font-size: 18px;
+  }
+}
+
+@media only screen and (max-width: 440px) {
+  .widthNumLabel{
+    font-size: 13px;
+  }
+
+  .widthTextLabel{
+    font-size:13px;
+  }
+}
+
+// .row {
+//   display: flex;
+//   flex-wrap: wrap;
+//   padding: 0 4px;
+//   box-sizing: border-box;
+// }
+
+// /* Create four equal columns that sits next to each other */
+// .column {
+//   flex: 50%;
+//   max-width: 50%;
+//   padding: 0 4px;
+//   box-sizing: border-box;
+// }
+
+.propertiesValLabel{
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 950px) and (min-width: 700px)  {
+  .propertiesValLabel{
+    font-size: 12px;
+  }
+}
+
+.inputBox{
+  width: 80%;
+}
+
+.rowForm{
+  margin-top:5px;
+  margin-bottom:10px;
+}
+
+.siteHeader{
+  height:50px;
+  background: black;
+}
+
+.headerTitle{
+  color:white;
+  font-size:25px;
+}
+
+@media only screen and (max-width: 600px)  {
+  .headerTitle{
+    font-size: 16px;
+  }
+}
+
+.optButton{
+  right:0;
+  margin-top:5px;
+  position: absolute;
+}
+
+.containerCss{
+  margin-bottom:15px;
+}
+
+.githubIcn{
+  width:25px;
+  height:25px;
+}
+
+.generalApp{
+  font-family: 'Montserrat';//'Montserrat';
+
+}
+
+//bootsrtrap row 
+:global {
+  .row{
+        margin-right: 0px;
+    margin-left: 0px;
+  }
+}
