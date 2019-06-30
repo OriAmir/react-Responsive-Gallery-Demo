@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node_modules/.bin/webpack-dev-server --mode development --open --hot",
-    "build": "webpack",
+    "build": "webpack --mode production",
     "serve": "node_modules/.bin/http-server ./dist"
   },
   "author": "Ori Amir",
