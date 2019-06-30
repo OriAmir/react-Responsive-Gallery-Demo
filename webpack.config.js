@@ -1,14 +1,15 @@
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+// const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 
 module.exports = {
   devtool: process.env.NODE_ENV === 'development' ? 'source-map' : 'none',
   entry: './src/index.js',
+  mode: 'production',
   output: {
     path: path.join(__dirname, '/dist'),
-    filename: 'index_bundle.js'
+    filename: 'index.bundle.js'
   },
   module: {
     rules: [{
@@ -64,9 +65,9 @@ module.exports = {
   plugins: [
     new HtmlWebPackPlugin({
       hash: true,
+      title: 'Production',
       filename: 'index.html', // target html
       template: './src/public/index.html' // source html
-    }),
-    new ExtractTextPlugin({ filename: 'css/style.css' })
+    })
   ]
 };
