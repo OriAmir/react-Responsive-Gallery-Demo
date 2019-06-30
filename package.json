@@ -6,9 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/index.js",
-    "build": "webpack --mode production",
+    "build": "webpack --mode production --config ./webpack.config.js",
     "serve": "node_modules/.bin/http-server ./dist",
-    "heroku-prebuild": "npm install --dev"
+    "heroku-prebuild": "npm install --dev",
+    "heroku-postbuild": "webpack -p --config ./webpack.config.js --progress"
   },
   "author": "Ori Amir",
   "license": "ISC",
