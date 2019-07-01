@@ -58,20 +58,6 @@ const ScreenPropertyForm = ({ initialValues, onSubmit, disableXXL }) => {
         </Col>
       </Row>
       <Row className={styles.rowForm}>
-        <Col xs={4} s={4} m={4} l={4} xl={4}>M </Col>
-        <Col xs={8} s={8} m={8} l={8} xl={8}>
-          <input
-            type="number"
-            name="m"
-            className={styles.inputBox}
-
-            onChange={handleInputChange}
-            value={inputs.m}
-            required
-          />
-        </Col>
-      </Row>
-      <Row className={styles.rowForm}>
         <Col xs={4} s={4} m={4} l={4} xl={4}>L </Col>
         <Col xs={8} s={8} m={8} l={8} xl={8}>
           <input
