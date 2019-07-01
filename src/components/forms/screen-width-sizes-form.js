@@ -7,7 +7,7 @@ import useForm from '../../hooks/use-form';
 import styles from '../app.module.scss';
 
 
-const ScreenPropertyForm = ({ initialValues, onSubmit }) => {
+const ScreenPropertyForm = ({ initialValues, onSubmit, disableXXL }) => {
   const {
     handleSubmit,
     handleInputChange,
@@ -99,6 +99,22 @@ const ScreenPropertyForm = ({ initialValues, onSubmit }) => {
           />
         </Col>
       </Row>
+      {
+        <Row className={styles.rowForm}>
+          <Col xs={4} s={4} m={4} l={4} xl={4}>XXL </Col>
+          <Col xs={8} s={8} m={8} l={8} xl={8}>
+            <input
+              type="number"
+              name="xxl"
+              className={styles.inputBox}
+              disabled={disableXXL}
+              onChange={handleInputChange}
+              value={inputs.xxl}
+              required
+            />
+          </Col>
+        </Row>
+      }
       <Row className="justify-content-center">
         <Button variant="outline-primary" size="sm" type="submit">Apply changes</Button>
       </Row>
@@ -108,7 +124,8 @@ const ScreenPropertyForm = ({ initialValues, onSubmit }) => {
 
 ScreenPropertyForm.propTypes = {
   onSubmit: PropTypes.func,
-  initialValues: PropTypes.object
+  initialValues: PropTypes.object,
+  disableXXL: PropTypes.bool
 };
 
 export default ScreenPropertyForm;

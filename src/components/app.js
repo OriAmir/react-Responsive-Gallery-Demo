@@ -59,6 +59,7 @@ const App = () => {
               <Col xs={12} sm={6} md={3} lg={3} xl={3}>
                 <Row className={styles.propertiesValLabel}>Screen width sizes</Row>
                 <ScreenPropertyForm
+                  disableXXL
                   initialValues={screenWidthSizes}
                   onSubmit={values => setScreenWidthValues(
                     Object.keys(values).reduce(
