@@ -1,15 +1,18 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 // const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 
 module.exports = {
-  devtool: process.env.NODE_ENV === 'development' ? 'source-map' : 'none',
+  devtool: process.env.NODE_ENV === 'development' ? 'inline-source-map' : false,
   entry: './src/index.js',
-  mode: 'production',
   output: {
     path: path.join(__dirname, '/dist'),
     filename: 'index.bundle.js'
+  },
+  performance: {
+    hints: process.env.NODE_ENV === 'production' ? 'warning' : false
   },
   module: {
     rules: [{
@@ -65,9 +68,11 @@ module.exports = {
   plugins: [
     new HtmlWebPackPlugin({
       hash: true,
-      title: 'Production',
       filename: 'index.html', // target html
       template: './src/public/index.html' // source html
-    })
+    }),
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin()
   ]
 };
