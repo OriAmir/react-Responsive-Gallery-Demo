@@ -36,7 +36,6 @@
     "webpack-dev-server": "^3.2.1"
   },
   "dependencies": {
-    "webpack": "^4.29.6",
     "bootstrap": "^4.3.1",
     "css-loader": "^2.1.1",
     "eslint-plugin-react-hooks": "^1.6.0",
@@ -46,10 +45,12 @@
     "react": "^16.8.6",
     "react-bootstrap": "^1.0.0-beta.9",
     "react-dom": "^16.8.6",
-    "react-responsive-gallery": "^1.0.4",
+    "react-image-lightbox": "^5.1.0",
+    "react-responsive-gallery": "^1.1.0",
     "sass-loader": "^7.1.0",
     "shortid": "^2.2.14",
     "style-loader": "^0.23.1",
-    "styled-components": "^4.2.0"
+    "styled-components": "^4.2.0",
+    "webpack": "^4.29.6"
   }
 }

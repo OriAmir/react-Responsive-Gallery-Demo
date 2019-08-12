@@ -29,6 +29,8 @@ module.exports = {
      "no-debugger": 0,
      "react/forbid-prop-types":0,
      "jsx-a11y/label-has-for": 0,
-     "radix": 0
+     "radix": 0,
+     "import/no-named-as-default": 0,
+     "import/prefer-default-export": 0
   }
 };
