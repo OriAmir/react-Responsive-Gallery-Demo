@@ -1,7 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types'; // ES6
-import styled from 'styled-components';
+import React, { useReducer } from 'react';
+import PropTypes from 'prop-types';
+import styled, { css } from 'styled-components';
 import shortid from 'shortid';
+import ImagesLightBox from './images-light-box';
+import { lightBoxReducer } from '../reducers';
 import { Row } from '../grid';
 import useScreenDimensions from '../hooks/use-screen-dimensions';
 import {
@@ -21,6 +23,9 @@ const ImgElment = styled.img.attrs(props => ({
   max-width: ${props => props.imgMaxWidth}%;
   height: auto;
   margin-bottom: ${props => props.paddingBottom || 0}px;
+  ${props => props.useLightBox && css`
+  cursor: pointer; 
+  `}
 `;
 
 const ColElement = styled.div.attrs(props => ({
@@ -34,7 +39,7 @@ padding: ${props => props.colPadding || 0}px;
 
 const GalleryTest = ({
   images, screenWidthSizes, numOfImagesPerRow, imagesMaxWidth,
-  colsPadding, imagesPaddingBottom, imagesStyle
+  colsPadding, imagesPaddingBottom, imagesStyle, useLightBox, lightBoxAdditionalProps
 }) => {
   const { width } = useScreenDimensions(screenWidthSizes);
   const gallerySizes = getGallerySizes(width, {
@@ -43,6 +48,10 @@ const GalleryTest = ({
     imagesMaxWidth,
     colsPadding,
     imagesPaddingBottom
+  });
+  const [lightBoxVal, lightBoxDispatch] = useReducer(lightBoxReducer, {
+    photoIndex: 0,
+    isOpen: false
   });
 
   const sorted = sortImagesArrayByOrder(images, width, screenWidthSizes);
@@ -57,27 +66,45 @@ const GalleryTest = ({
       : { ...total, [index % gallerySizes.numOfImagePerRow]: [cur] }), {});
 
   return (
-    <Row>
-      {Object.keys(imagesCols).map(key => (
-        <ColElement
-          key={shortid.generate()}
-          colSize={100 / gallerySizes.numOfImagePerRow}
-          colPadding={gallerySizes.colsPadding}
-        >
-          {imagesCols[key].map(img => (
-            <ImgElment
-              key={shortid.generate()}
-              imageSrc={img.src}
-              imgMaxWidth={gallerySizes.imagesMaxWidth}
-              paddingBottom={gallerySizes.imagesPaddingBottom}
-              className={`${imagesStyle} ${img.imgClassName || ''}`}
-            />
-          ))
+    <>
+      {useLightBox && lightBoxVal.isOpen
+       && (
+       <ImagesLightBox
+         imagesLightbox={sorted}
+         photoIndex={lightBoxVal.photoIndex}
+         lightBoxDispatch={lightBoxDispatch}
+         lightBoxAdditionalProps={lightBoxAdditionalProps}
+       />
+       )
+        }
+      <Row>
+        {Object.keys(imagesCols).map((key, colIndex) => (
+          <ColElement
+            key={shortid.generate()}
+            colSize={100 / gallerySizes.numOfImagePerRow}
+            colPadding={gallerySizes.colsPadding}
+          >
+            {imagesCols[key].map((img, imgIndex) => (
+              <ImgElment
+                key={shortid.generate()}
+                imageSrc={img.src}
+                imgMaxWidth={gallerySizes.imagesMaxWidth}
+                paddingBottom={gallerySizes.imagesPaddingBottom}
+                className={`${imagesStyle} ${img.imgClassName || ''}`}
+                useLightBox={useLightBox}
+                onClick={() => useLightBox && lightBoxDispatch({
+                  type: 'photoIndex_Open',
+                  photoIndex: imgIndex === 0
+                    ? colIndex : colIndex + (imgIndex * gallerySizes.numOfImagePerRow)
+                })}
+              />
+            ))
           }
-        </ColElement>
-      ))
+          </ColElement>
+        ))
       }
-    </Row>
+      </Row>
+    </>
   );
 };
 
@@ -91,7 +118,9 @@ GalleryTest.propTypes = {
   imagesStyle: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.object
-  ])
+  ]),
+  useLightBox: PropTypes.bool,
+  lightBoxAdditionalProps: PropTypes.object
 };
 
 GalleryTest.defaultProps = {
@@ -100,7 +129,8 @@ GalleryTest.defaultProps = {
   imagesMaxWidth: defaultImageMaxWidth,
   colsPadding: defaultColsPadding,
   imagesPaddingBottom: defaultImagesPaddingBottom,
-  imagesStyle: ''
+  imagesStyle: '',
+  useLightBox: false
 };
 
 export default GalleryTest;

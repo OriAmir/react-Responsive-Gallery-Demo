@@ -14,15 +14,17 @@ import {
 } from '../constants/responsive';
 import useDefaultScreenDimensions from '../hooks/use-default-screen-dimensions';
 import { getSizeGroup } from '../utils/gallery';
+// import GalleryTest from './gallery';
 
 const App = () => {
   const [screenWidthSizes, setScreenWidthValues] = useState(screenWidthSizesDefault);
   const [numOfImagePerRow, seNumOfImagesPerRowValues] = useState(numOfImagesPerRowDefault);
   const [imagesMaxWidth, setImagexMaxWidth] = useState(imagesMaxWidthDefault);
   const [imagesPaddingBottom, setImagesPaddingBottom] = useState(imagesPaddingBottomDefault);
-
   const width = useDefaultScreenDimensions();
   const [showoptions, setShowOptions] = useState(true);
+  const [useLightBox, setUseLightBox] = useState(false);
+
   return (
     <div className={styles.generalApp}>
       <Row className={styles.siteHeader}>
@@ -55,63 +57,77 @@ const App = () => {
         {
           showoptions
           && (
-            <Row>
-              <Col xs={12} sm={6} md={3} lg={3} xl={3}>
-                <Row className={styles.propertiesValLabel}>Screen width sizes</Row>
-                <ScreenPropertyForm
-                  disableXXL
-                  initialValues={screenWidthSizes}
-                  onSubmit={values => setScreenWidthValues(
-                    Object.keys(values).reduce(
-                      (total, cur) => ({ ...total, [cur]: parseInt(values[cur]) }), {}
-                    )
-                  )}
-                />
-              </Col>
-              <Col xs={12} sm={6} md={3} lg={3} xl={3}>
-                <Row className={styles.propertiesValLabel}>Num of images per row</Row>
-                <ScreenPropertyForm
-                  initialValues={numOfImagePerRow}
-                  onSubmit={values => seNumOfImagesPerRowValues(
-                    Object.keys(values).reduce(
-                      (total, cur) => ({ ...total, [cur]: parseInt(values[cur]) }), {}
-                    )
-                  )}
-                />
-              </Col>
-              <Col xs={12} sm={6} md={3} lg={3} xl={3}>
-                <Row className={styles.propertiesValLabel}>Images max width</Row>
-                <ScreenPropertyForm
-                  initialValues={imagesMaxWidth}
-                  onSubmit={values => setImagexMaxWidth(
-                    Object.keys(values).reduce(
-                      (total, cur) => ({ ...total, [cur]: parseInt(values[cur]) }), {}
-                    )
-                  )}
-                />
-              </Col>
-              <Col xs={12} sm={6} md={3} lg={3} xl={3}>
-                <Row className={styles.propertiesValLabel}>Images Padding Bottom</Row>
-                <ScreenPropertyForm
-                  initialValues={imagesPaddingBottom}
-                  onSubmit={values => setImagesPaddingBottom(
-                    Object.keys(values).reduce(
-                      (total, cur) => ({ ...total, [cur]: parseInt(values[cur]) }), {}
-                    )
-                  )}
-                />
-              </Col>
-            </Row>
+            <>
+              <Row>
+                <Col className={styles.checkBoxLabel}>
+                  Use Images Light Box:
+                  <span className={styles.checkBoxInput}>
+                    <input value={useLightBox} onChange={e => setUseLightBox(e.target.checked)} type="checkbox" />
+                  </span>
+                </Col>
+
+              </Row>
+              <Row>
+                <Col xs={12} sm={6} md={3} lg={3} xl={3}>
+                  <Row className={styles.propertiesValLabel}>Screen width sizes</Row>
+                  <ScreenPropertyForm
+                    disableXXL
+                    initialValues={screenWidthSizes}
+                    onSubmit={values => setScreenWidthValues(
+                      Object.keys(values).reduce(
+                        (total, cur) => ({ ...total, [cur]: parseInt(values[cur]) }), {}
+                      )
+                    )}
+                  />
+                </Col>
+                <Col xs={12} sm={6} md={3} lg={3} xl={3}>
+                  <Row className={styles.propertiesValLabel}>Num of images per row</Row>
+                  <ScreenPropertyForm
+                    initialValues={numOfImagePerRow}
+                    onSubmit={values => seNumOfImagesPerRowValues(
+                      Object.keys(values).reduce(
+                        (total, cur) => ({ ...total, [cur]: parseInt(values[cur]) }), {}
+                      )
+                    )}
+                  />
+                </Col>
+                <Col xs={12} sm={6} md={3} lg={3} xl={3}>
+                  <Row className={styles.propertiesValLabel}>Images max width</Row>
+                  <ScreenPropertyForm
+                    initialValues={imagesMaxWidth}
+                    onSubmit={values => setImagexMaxWidth(
+                      Object.keys(values).reduce(
+                        (total, cur) => ({ ...total, [cur]: parseInt(values[cur]) }), {}
+                      )
+                    )}
+                  />
+                </Col>
+                <Col xs={12} sm={6} md={3} lg={3} xl={3}>
+                  <Row className={styles.propertiesValLabel}>Images Padding Bottom</Row>
+                  <ScreenPropertyForm
+                    initialValues={imagesPaddingBottom}
+                    onSubmit={values => setImagesPaddingBottom(
+                      Object.keys(values).reduce(
+                        (total, cur) => ({ ...total, [cur]: parseInt(values[cur]) }), {}
+                      )
+                    )}
+                  />
+                </Col>
+              </Row>
+            </>
           )
         }
 
       </Container>
 
       <ResponsiveGallery
+        useLightBox={useLightBox}
         imagesStyle={styles.test}
         images={[
           {
-            src: 'https://cdn.pixabay.com/photo/2017/01/14/12/59/iceland-1979445_960_720.jpg'
+            src: 'https://cdn.pixabay.com/photo/2017/01/14/12/59/iceland-1979445_960_720.jpg',
+            lightboxCaption: 'image caption',
+            lightboxTitle: 'image title'
           },
           {
             src: 'https://cdn.pixabay.com/photo/2019/03/09/17/30/horse-4044547_960_720.jpg'
