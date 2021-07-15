@@ -166,7 +166,7 @@ const App = () => {
             src: 'https://cdn.pixabay.com/photo/2017/02/18/13/55/swan-2077219_960_720.jpg'
           },
           {
-            src: 'https://cdn.pixabay.com/photo/2015/02/28/21/47/gulls-654046_960_720.jpg'
+            src: 'https://cdn.pixabay.com/photo/2016/11/14/04/45/elephant-1822636_1280.jpg'
           },
           {
             src: 'https://cdn.pixabay.com/photo/2017/03/23/13/23/stag-2168278_960_720.jpg'
@@ -175,7 +175,7 @@ const App = () => {
             src: 'https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313_960_720.jpg'
           },
           {
-            src: 'https://cdn.pixabay.com/photo/2013/03/20/23/20/nature-95364_960_720.jpg'
+            src: 'https://cdn.pixabay.com/photo/2017/03/31/15/41/giraffe-2191662_1280.jpg'
             //     orderS: 1,
             //     orderM: 2,
             //     orderL: 3,
