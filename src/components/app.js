@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ResponsiveGallery from 'react-responsive-gallery';
+import ResponsiveGallery, { getSelectedImages } from 'react-responsive-gallery';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -72,8 +72,10 @@ const App = () => {
                   <span className={styles.checkBoxInput}>
                     <input value={selectable} onChange={e => setSelectable(e.target.checked)} type="checkbox" />
                   </span>
+                  {selectable && <Button style={{ marginLeft: '5px' }} size="sm" className="pull-right" onClick={() => alert(getSelectedImages())}>show selected values</Button> }
                 </Col>
               </Row>
+              <br />
               <Row>
                 <Col xs={12} sm={6} md={3} lg={3} xl={3}>
                   <Row className={styles.propertiesValLabel}>Screen width sizes</Row>
