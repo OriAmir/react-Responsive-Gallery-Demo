@@ -14,7 +14,6 @@ import {
 } from '../constants/responsive';
 import useDefaultScreenDimensions from '../hooks/use-default-screen-dimensions';
 import { getSizeGroup } from '../utils/gallery';
-// import GalleryTest from './gallery';
 
 const App = () => {
   const [screenWidthSizes, setScreenWidthValues] = useState(screenWidthSizesDefault);
@@ -24,6 +23,7 @@ const App = () => {
   const width = useDefaultScreenDimensions();
   const [showoptions, setShowOptions] = useState(true);
   const [useLightBox, setUseLightBox] = useState(false);
+  const [selectable, setSelectable] = useState(false);
 
   return (
     <div className={styles.generalApp}>
@@ -65,7 +65,14 @@ const App = () => {
                     <input value={useLightBox} onChange={e => setUseLightBox(e.target.checked)} type="checkbox" />
                   </span>
                 </Col>
-
+              </Row>
+              <Row>
+                <Col className={styles.checkBoxLabel}>
+                  Use Images selectable:
+                  <span className={styles.checkBoxInput}>
+                    <input value={selectable} onChange={e => setSelectable(e.target.checked)} type="checkbox" />
+                  </span>
+                </Col>
               </Row>
               <Row>
                 <Col xs={12} sm={6} md={3} lg={3} xl={3}>
@@ -176,15 +183,12 @@ const App = () => {
           },
           {
             src: 'https://cdn.pixabay.com/photo/2017/03/31/15/41/giraffe-2191662_1280.jpg'
-            //     orderS: 1,
-            //     orderM: 2,
-            //     orderL: 3,
-            //     imgClassName: styles.test1 }
           }]}
         screenWidthSizes={screenWidthSizes}
         numOfImagesPerRow={numOfImagePerRow}
         imagesPaddingBottom={imagesPaddingBottom}
         imagesMaxWidth={imagesMaxWidth}
+        selectable={selectable}
       // colsPadding={{
       //   xs: 5, s: 10, m: 15, l: 20, xl: 25, xxl: 50
       // }}
